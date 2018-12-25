@@ -1,13 +1,14 @@
-import sys
-
 import gevent
 
 from .umlinterface import UMLhandler
+from .daemons import die
 
 
 def main():
-    UMLhandler().start()
-
+    handler = UMLhandler()
+    handler.start()
+    handler.join()
+    die()
     gevent.wait()
 
 
